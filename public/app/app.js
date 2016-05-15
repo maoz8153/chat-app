@@ -5,6 +5,7 @@
         // 3rd Party modules
         'ngAnimate',
         'btford.socket-io',
+        'angularMoment',
 
         // app code modules
         'app.config',

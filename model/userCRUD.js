@@ -14,7 +14,7 @@ var Action = {
     createUser : function (user) {
 
                         var la = new User();
-                        la.username = user;
+                        la.username = user.name;
                         var promise = la.save();
                         return promise;
 

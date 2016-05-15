@@ -13,17 +13,17 @@
             <div class="panel-collapse collapse" id="collapseOne">
                 <div class="panel-body">
                     <ul class="chat">
-                        <li ng-repeat="message in messages" ng-class="{$even : 'left clearfix', $odd :  'right clearfix'}"><span  ng-class="{$even : 'chat-img pull-left', $odd :  'chat-img pull-right'}">
-                            <img ng-src="{{message.user.image}}" alt="User Avatar" class="img-circle" />
+                        <li ng-repeat="message in vm.messages" ng-class="{$even : 'left clearfix', $odd :  'right clearfix'}"><span  ng-class="{$even : 'chat-img pull-left', $odd :  'chat-img pull-right'}">
+                            <img ng-src="{{message.image}}" alt="User Avatar" class="img-circle" />
                         </span>
                             <div class="chat-body clearfix">
                                 <div class="header" ng-if="$even">
-                                    <strong class="primary-font">{{message.user.name}}</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>{{message.date}}</small>
+                                    <strong class="primary-font">{{message.username}}</strong> <small class="pull-right text-muted">
+                                        <span am-time-ago="message.date" class="glyphicon glyphicon-time"></span></small>
                                 </div>
                                 <div class="header" ng-if="$odd">
                                     <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{message.date}}</small>
-                                    <strong class="pull-right primary-font">{{message.user.name}}</strong>
+                                    <strong class="pull-right primary-font">{{message.username}}</strong>
                                 </div>
                                 <p>{{message.text}}</p>
                             </div>

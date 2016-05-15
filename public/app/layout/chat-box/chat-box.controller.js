@@ -16,8 +16,11 @@
         vm.sendMessage = sendMessage;
 
         socket.on('new message', function (message) {
+
             $timeout(function () {
+                console.log('message in timeout');
                 vm.messages.push(message);
+                console.log(vm.messages);
             });
         });
 
@@ -25,7 +28,9 @@
         function sendMessage() {
             var messageObj = {
                 text : vm.inputMessage,
-                username : vm.user
+                username : vm.user.name,
+                image : vm.user.image,
+                date : Date.now
             };
             serverEvents.emitNewMessageToServer(messageObj);
             $timeout(function () {

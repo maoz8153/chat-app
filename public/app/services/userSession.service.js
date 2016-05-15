@@ -5,11 +5,14 @@
         .module('app.services')
         .factory('userSession', userSession);
 
-        userSession.$inject = ['serverEvents'];
-        function userSession(serverEvents) {
+        userSession.$inject = ['serverEvents', 'randomUserAvatar'];
+        function userSession(serverEvents, randomUserAvatar) {
 
 
-            var user;
+            var user = {
+                name : null,
+                image : null
+            };
 
             var service = {
                 saveUserToLocalstorage: saveUserToLocalstorage,
@@ -27,7 +30,10 @@
                 if (localStorage.chatBoxSession) {
                     user =  JSON.parse(localStorage.chatBoxSession);
                 } else {
-                    user = generateUsername();
+                    user.name = generateUsername();
+                    randomUserAvatar.getRandomAvatar().then(function (data) {
+                        user.image = data;
+                    });
                     serverEvents.emitNewUserToServer(user).then(function () {
                          saveUserToLocalstorage();
                          console.log('user save ---- ' + user);
