@@ -5,8 +5,8 @@
         .module('app.services')
         .factory('userSession', userSession);
 
-        userSession.$inject = ['serverEvents', 'randomUserAvatar'];
-        function userSession(serverEvents, randomUserAvatar) {
+        userSession.$inject = ['serverEvents', 'randomUserAvatar', '$q'];
+        function userSession(serverEvents, randomUserAvatar, $q) {
 
 
             var user = {
@@ -27,17 +27,19 @@
             }
 
             function  setUser() {
+                var userPromise = $q.defer();
                 if (localStorage.chatBoxSession) {
                     user =  JSON.parse(localStorage.chatBoxSession);
                 } else {
                     user.name = generateUsername();
                     randomUserAvatar.getRandomAvatar().then(function (data) {
                         user.image = data;
-                    });
-                    serverEvents.emitNewUserToServer(user).then(function () {
+                        serverEvents.emitNewUserToServer(user, userPromise).then(function () {
                          saveUserToLocalstorage();
                          console.log('user save ---- ' + user);
+                        });
                     });
+
                 }
             }
 

@@ -35,6 +35,7 @@ server.on('listening', onListening);
  * Listen to socket connection
  */
 var io = require('socket.io').listen(server);
+module.exports = io;
 var socketFunction = require('../socket/socket.connection.js');
 io.sockets.on('connection', socketFunction );
 

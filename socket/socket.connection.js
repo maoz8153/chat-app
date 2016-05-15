@@ -21,7 +21,7 @@ var sokcetFunction = function (socket) {
 
         User.createUser(user).then(function (data) {
             console.log(data);
-            socket.emit('new user confirm', data);
+            socket.emit('confirm new user', data);
         })
             .catch(function (error) {
                 socket.emit('error', error);

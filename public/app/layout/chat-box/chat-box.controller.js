@@ -24,6 +24,11 @@
             });
         });
 
+        socket.on('confirm new user', function (data) {
+            console.log('confirm new user');
+            serverEvents.confirmUsername();
+        });
+
 
         function sendMessage() {
             var messageObj = {

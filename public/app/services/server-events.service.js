@@ -8,7 +8,7 @@
     serverEvents.$inject = ['$rootScope', '$q', 'eventEmitter', 'socket'];
     function serverEvents($rootScope, $q, eventEmitter, socket) {
 
-        var promise_array = [];
+        var promise;
 
         $rootScope.$on('new message', function (message) {
             console.log('recive new message from server');
@@ -22,7 +22,8 @@
 
         var service = {
             emitNewMessageToServer : emitNewMessageToServer,
-            emitNewUserToServer : emitNewUserToServer
+            emitNewUserToServer : emitNewUserToServer,
+            confirmUsername : confirmUsername
         };
 
         return service;
@@ -45,10 +46,14 @@
         });
 
         function emitNewUserToServer(user) {
-            var newUserPromise = $q.defer();
-            var userPromiseIndex = savePromiseAndReturnIndex(newUserPromise);
+            promise = $q.defer();
+            var userPromiseIndex = 0;
             socket.emit('new user', user, userPromiseIndex);
-            return newUserPromise.promise;
+            return promise.promise;
+        }
+
+        function confirmUsername() {
+            promise.resolve();
         }
 
         function savePromiseAndReturnIndex(promiseObj) {
