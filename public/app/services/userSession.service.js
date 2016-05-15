@@ -5,8 +5,8 @@
         .module('app.services')
         .factory('userSession', userSession);
 
-        userSession.$inject = ['socketFactory'];
-        function userSession(socketFactory) {
+        userSession.$inject = ['serverEvents'];
+        function userSession(serverEvents) {
 
 
             var user;
@@ -28,7 +28,7 @@
                     user =  JSON.parse(localStorage.chatBoxSession);
                 } else {
                     user = generateUsername();
-                    socketFactory.emitNewUserToServer(user).then(function () {
+                    serverEvents.emitNewUserToServer(user).then(function () {
                          saveUserToLocalstorage();
                          console.log('user save ---- ' + user);
                     });

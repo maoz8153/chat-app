@@ -4,6 +4,7 @@
 
         // 3rd Party modules
         'ngAnimate',
+        'btford.socket-io',
 
         // app code modules
         'app.config',

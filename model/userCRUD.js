@@ -1,19 +1,27 @@
 /*jslint node:true*/
 var User = require('../model/user.js');
+var Q = require("q");
 
 var Action = {
     findUsers : function (callback, limit) {
-        User.find(callback).limit(limit);
+       return User.find(callback).limit(limit).exec();
     },
 
     findUserById : function (id, callback) {
-       User.findById(id, callback);
+       return User.findById(id, callback).exec();
     },
 
-    createUser : function (user, callback) {
-        User.create(user, callback);
+    createUser : function (user) {
+
+                        var la = new User();
+                        la.username = user;
+                        var promise = la.save();
+                        return promise;
+
     }
 
 };
 
 module.exports = Action;
+
+

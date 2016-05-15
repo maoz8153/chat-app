@@ -5,9 +5,9 @@
         .module('app.layout')
         .controller('chatBox', chatBox);
 
-    chatBox.$inject = ['socketFactory','eventEmitter', 'userSession', '$timeout'];
+    chatBox.$inject = ['socket' ,'serverEvents','eventEmitter', 'userSession', '$timeout'];
 
-    function chatBox(socketFactory, eventEmitter, userSession, $timeout) {
+    function chatBox(socket ,serverEvents, eventEmitter, userSession, $timeout) {
         /* jshint validthis: true */
         var vm = this;
         vm.messages = [];
@@ -15,18 +15,19 @@
         vm.inputMessage;
         vm.sendMessage = sendMessage;
 
-        eventEmitter.subscribe_newMessage(function(message) {
-                $timeout(function () {
-                    vm.messages.push(message);
-                });
+        socket.on('new message', function (message) {
+            $timeout(function () {
+                vm.messages.push(message);
+            });
         });
+
 
         function sendMessage() {
             var messageObj = {
-                message : vm.inputMessage,
-                user : vm.user
+                text : vm.inputMessage,
+                username : vm.user
             };
-            socketFactory.emitNewMessageToServer(messageObj);
+            serverEvents.emitNewMessageToServer(messageObj);
             $timeout(function () {
                 vm.inputMessage = '';
             });

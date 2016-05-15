@@ -32,7 +32,7 @@
                 </div>
                 <div class="panel-footer">
                     <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <input ng-model="vm.inputMessage" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                         <span class="input-group-btn">
                             <button ng-click="vm.sendMessage()" class="btn btn-warning btn-sm" id="btn-chat">
                                 Send</button>
