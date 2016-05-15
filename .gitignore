@@ -1,0 +1,7 @@
+# Ignore Node & Bower
+###################
+.idea
+node_modules
+/public/assets/vendors/*
+
+

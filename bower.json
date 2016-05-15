@@ -1,0 +1,25 @@
+{
+  "name": "LMY",
+  "version": "0.0.0",
+  "authors": [
+    "maoz8153 <maoz8153@gmail.com>"
+  ],
+  "description": "Chat App",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.0",
+    "bootstrap": "^3.3.6",
+    "angular-animate": "^1.5.5"
+  }
+}

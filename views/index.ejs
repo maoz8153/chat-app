@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title>Chat App</title>
+
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel='stylesheet' href='assets/vendors/bootstrap/dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='assets/stylesheets/style.css'/>
+  </head>
+  <body>
+
+
+    <chat-box></chat-box>
+
+
+
+    <!-- bower:js -->
+    <script src="assets/vendors/angular/angular.js"></script>
+    <script src="assets/vendors/jquery/dist/jquery.js"></script>
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="assets/vendors/angular-animate/angular-animate.js"></script>
+    <!-- endbower -->
+
+     <script src="/socket.io/socket.io.js"></script>
+
+    <!-- inject:js -->
+    <script src="app/app.js"></script>
+    <script src="app/config/config.modules.js"></script>
+    <script src="app/layout/layout.modules.js"></script>
+    <script src="app/services/services.modules.js"></script>
+    <script src="app/config/app.run.js"></script>
+    <script src="app/services/event-emitter.service.js"></script>
+    <script src="app/services/socket.io.service.js"></script>
+    <script src="app/services/userSession.service.js"></script>
+    <script src="app/layout/chat-box/chat-box.controller.js"></script>
+    <script src="app/layout/chat-box/chat-box.layout.js"></script>
+    <!-- endinject -->
+  </body>
+</html>
