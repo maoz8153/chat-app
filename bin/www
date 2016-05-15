@@ -35,37 +35,9 @@ server.on('listening', onListening);
  * Listen to socket connection
  */
 var io = require('socket.io').listen(server);
-
-module.exports = io;
-
-var Message = require('../model/messageCRUD');
-var User = require('../model/userCRUD');
 var socketFunction = require('../socket/socket.connection.js');
-io.sockets.on('connection',  function(socket) {
-    socket.on('send message', function (message) {
-        Message.newMassege(message).then(function (data) {
-            console.log(data);
-            message.date = data.created_at;
-            io.sockets.emit('new message', message);
-        })
-            .catch(function (error) {
-                socket.emit('error', error);
-            });
+io.sockets.on('connection', socketFunction );
 
-    });
-
-    socket.on('new user', function (user, index) {
-
-        User.createUser(user).then(function (data) {
-            console.log(data);
-            socket.emit('new user confirm', data);
-        })
-            .catch(function (error) {
-                socket.emit('error', error);
-            });
-
-    });
-});
 
 
 
